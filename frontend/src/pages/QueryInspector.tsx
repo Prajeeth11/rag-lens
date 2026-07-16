@@ -6,7 +6,7 @@ import { PipelineStepStream } from '../components/PipelineStepStream'
 import { RetrievalResult } from '../components/RetrievalResult'
 import { Button, Card, ErrorNote, Input, Select } from '../components/ui'
 
-const PIE_COLORS = ['#6366f1', '#14b8a6', '#f59e0b']
+const PIE_COLORS = ['#C05A2E', '#199E70', '#C98500']
 
 export function QueryInspector() {
   const { pipelines, loadPipelines } = useStore()
@@ -93,24 +93,24 @@ export function QueryInspector() {
           Run
         </Button>
       </Card>
-      {ready.length === 0 && <p className="text-sm text-slate-500">Build a pipeline first — none are ready.</p>}
+      {ready.length === 0 && <p className="text-sm text-ink-faint">Build a pipeline first — none are ready.</p>}
       {error && <ErrorNote message={error} />}
       <div className="grid lg:grid-cols-[1fr_320px] gap-4 items-start">
         <div className="space-y-3">
           {result?.answer && (
             <Card className="border-accent/40">
-              <h3 className="text-sm font-medium text-slate-400 mb-1">Generated answer</h3>
+              <h3 className="text-sm font-medium text-ink-soft mb-1">Generated answer</h3>
               <p className="text-sm leading-relaxed whitespace-pre-wrap">{result.answer}</p>
             </Card>
           )}
           {result?.chunks.map((chunk, i) => <RetrievalResult key={chunk.id + i} chunk={chunk} rank={i} />)}
-          {!result && !running && <p className="text-sm text-slate-500 py-8 text-center">Results appear here.</p>}
+          {!result && !running && <p className="text-sm text-ink-faint py-8 text-center">Results appear here.</p>}
         </div>
         <div className="space-y-4">
           <PipelineStepStream steps={steps} running={running} />
           {result && (
             <Card>
-              <h3 className="text-sm font-medium text-slate-400 mb-1">
+              <h3 className="text-sm font-medium text-ink-soft mb-1">
                 Token budget · total {result.total_ms.toFixed(0)} ms
               </h3>
               <ResponsiveContainer width="100%" height={200}>
@@ -120,10 +120,10 @@ export function QueryInspector() {
                       <Cell key={i} fill={PIE_COLORS[i % PIE_COLORS.length]} />
                     ))}
                   </Pie>
-                  <Tooltip contentStyle={{ background: '#1e2430', border: '1px solid #2a3140', borderRadius: 8 }} />
+                  <Tooltip contentStyle={{ background: '#ffffff', border: '1px solid #e4d6c3', borderRadius: 8 }} />
                 </PieChart>
               </ResponsiveContainer>
-              <div className="flex justify-center gap-3 text-xs text-slate-400">
+              <div className="flex justify-center gap-3 text-xs text-ink-soft">
                 {budget.map((d, i) => (
                   <span key={d.name} className="flex items-center gap-1">
                     <span className="w-2.5 h-2.5 rounded-sm inline-block" style={{ background: PIE_COLORS[i] }} />

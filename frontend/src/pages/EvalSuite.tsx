@@ -52,10 +52,10 @@ function parseCsv(text: string): QA[] {
 const METRICS = ['faithfulness', 'answer_relevancy', 'context_precision', 'context_recall'] as const
 
 function scoreColor(v: number | null) {
-  if (v === null) return 'text-slate-500'
-  if (v >= 0.8) return 'text-emerald-400'
-  if (v >= 0.5) return 'text-amber-400'
-  return 'text-red-400'
+  if (v === null) return 'text-ink-faint'
+  if (v >= 0.8) return 'text-emerald-700'
+  if (v >= 0.5) return 'text-amber-700'
+  return 'text-red-600'
 }
 
 export function EvalSuite() {
@@ -157,13 +157,13 @@ export function EvalSuite() {
           </Button>
         )}
       </Card>
-      <p className="text-xs text-slate-500">
+      <p className="text-xs text-ink-faint">
         CSV format: <code className="bg-surface-overlay px-1 rounded">question,expected_answer</code> — one row per test
         case. Requires OPENAI_API_KEY on the backend (RAGAS uses an LLM judge). Runs take ~10–30 s per question.
       </p>
       {error && <ErrorNote message={error} />}
       {running && (
-        <Card className="text-sm text-slate-400 flex items-center gap-3">
+        <Card className="text-sm text-ink-soft flex items-center gap-3">
           <Spinner /> Running each question through the pipeline, then scoring with RAGAS…
         </Card>
       )}
@@ -172,7 +172,7 @@ export function EvalSuite() {
           <Card className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="text-left text-xs text-slate-500 border-b border-line">
+                <tr className="text-left text-xs text-ink-faint border-b border-line">
                   <th className="py-2 pr-3">Question</th>
                   {METRICS.map((m) => (
                     <th key={m} className="py-2 px-2 whitespace-nowrap">
@@ -186,7 +186,7 @@ export function EvalSuite() {
                   <tr key={i} className="border-b border-line/50 align-top">
                     <td className="py-2 pr-3">
                       <div>{r.question}</div>
-                      <div className="text-xs text-slate-500 mt-1 line-clamp-2">{r.answer}</div>
+                      <div className="text-xs text-ink-faint mt-1 line-clamp-2">{r.answer}</div>
                     </td>
                     {METRICS.map((m) => (
                       <td key={m} className={`py-2 px-2 font-mono ${scoreColor(r[m])}`}>

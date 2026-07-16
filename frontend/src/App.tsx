@@ -46,7 +46,7 @@ export default function App() {
               className={({ isActive }) =>
                 cn(
                   'flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition-colors',
-                  isActive ? 'bg-accent/15 text-accent-soft' : 'text-slate-400 hover:text-slate-200 hover:bg-surface-overlay',
+                  isActive ? 'bg-accent/10 text-accent-soft' : 'text-ink-soft hover:text-ink hover:bg-surface-overlay',
                 )
               }
             >
@@ -54,7 +54,7 @@ export default function App() {
               {label}
             </NavLink>
           ))}
-          <div className="mt-auto px-3 text-xs text-slate-600">RAG pipeline debugger</div>
+          <div className="mt-auto px-3 text-xs text-ink-faint">RAG pipeline debugger</div>
         </aside>
         <main className="flex-1 p-6 max-w-6xl">
           <Routes>

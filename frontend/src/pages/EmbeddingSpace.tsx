@@ -71,11 +71,11 @@ export function EmbeddingSpace() {
         </Button>
       </Card>
       {error && <ErrorNote message={error} />}
-      {ready.length === 0 && <p className="text-sm text-slate-500">Build a pipeline first.</p>}
+      {ready.length === 0 && <p className="text-sm text-ink-faint">Build a pipeline first.</p>}
       {data && (
         <Card>
           <EmbeddingPlot data={data} />
-          <p className="text-xs text-slate-500 mt-1">
+          <p className="text-xs text-ink-faint mt-1">
             {data.points.length} chunks · colored by source document · hover for a preview
           </p>
         </Card>

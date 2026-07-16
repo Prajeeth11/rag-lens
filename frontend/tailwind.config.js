@@ -5,14 +5,19 @@ export default {
     extend: {
       colors: {
         surface: {
-          DEFAULT: '#0f1117',
-          raised: '#161a23',
-          overlay: '#1e2430',
+          DEFAULT: '#faf6f0', // warm off-white page
+          raised: '#ffffff', // cards
+          overlay: '#f1e8db', // beige inputs / chips
         },
-        line: '#2a3140',
+        line: '#e4d6c3', // sand borders
         accent: {
-          DEFAULT: '#6366f1',
-          soft: '#818cf8',
+          DEFAULT: '#b3603f', // clay
+          soft: '#96482b', // deep clay (hover / link text)
+        },
+        ink: {
+          DEFAULT: '#3d3327', // primary text
+          soft: '#6c5d4c', // secondary text
+          faint: '#857463', // muted text
         },
       },
     },

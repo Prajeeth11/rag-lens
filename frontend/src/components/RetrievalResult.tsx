@@ -28,8 +28,8 @@ export function RetrievalResult({ chunk, rank }: { chunk: RetrievedChunk; rank: 
         {meta.semantic_rank != null && <Badge>semantic #{(meta.semantic_rank as number) + 1}</Badge>}
         {chunk.unique && <Badge tone="accent">unique</Badge>}
       </div>
-      <p className="text-sm text-slate-300 whitespace-pre-wrap leading-relaxed mb-2">{chunk.text}</p>
-      <div className="flex items-center gap-1.5 text-xs text-slate-500">
+      <p className="text-sm text-ink whitespace-pre-wrap leading-relaxed mb-2">{chunk.text}</p>
+      <div className="flex items-center gap-1.5 text-xs text-ink-faint">
         <FileText size={12} />
         {meta.document_name} · page {meta.page} · chars {meta.start_char}–{meta.end_char} · {meta.token_count} tokens
       </div>

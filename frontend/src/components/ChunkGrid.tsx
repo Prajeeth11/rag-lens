@@ -3,12 +3,13 @@ import type { Chunk } from '../api/client'
 import { ChunkCard } from './ChunkCard'
 import { cn } from './ui'
 
+// Size is a magnitude, so the buckets are one clay hue stepped light -> dark.
 const BUCKETS = [
-  { max: 32, className: 'bg-sky-500/60 hover:bg-sky-400', label: '< 32' },
-  { max: 64, className: 'bg-teal-500/60 hover:bg-teal-400', label: '32–64' },
-  { max: 128, className: 'bg-amber-500/60 hover:bg-amber-400', label: '64–128' },
-  { max: 256, className: 'bg-orange-500/60 hover:bg-orange-400', label: '128–256' },
-  { max: Infinity, className: 'bg-rose-500/60 hover:bg-rose-400', label: '256+' },
+  { max: 32, className: 'bg-[#F3DCCC] hover:bg-[#E4B694]', label: '< 32' },
+  { max: 64, className: 'bg-[#E4B694] hover:bg-[#D08D5C]', label: '32–64' },
+  { max: 128, className: 'bg-[#D08D5C] hover:bg-[#C05A2E]', label: '64–128' },
+  { max: 256, className: 'bg-[#C05A2E] hover:bg-[#94421F]', label: '128–256' },
+  { max: Infinity, className: 'bg-[#94421F] hover:bg-[#6E3117]', label: '256+' },
 ]
 
 function bucketOf(tokens: number) {
@@ -29,7 +30,7 @@ export function ChunkGrid({ chunks }: { chunks: Chunk[] }) {
             className={cn(
               'rounded transition-colors',
               bucketOf(chunk.token_count).className,
-              selected?.index === chunk.index && 'ring-2 ring-white',
+              selected?.index === chunk.index && 'ring-2 ring-stone-700',
             )}
             style={{
               width: Math.max(18, Math.min(64, chunk.token_count / 3)),
@@ -38,7 +39,7 @@ export function ChunkGrid({ chunks }: { chunks: Chunk[] }) {
           />
         ))}
       </div>
-      <div className="flex gap-3 text-xs text-slate-400">
+      <div className="flex gap-3 text-xs text-ink-soft">
         {BUCKETS.map((b) => (
           <span key={b.label} className="flex items-center gap-1.5">
             <span className={cn('inline-block w-3 h-3 rounded', b.className.split(' ')[0])} />

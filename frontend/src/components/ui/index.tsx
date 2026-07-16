@@ -13,7 +13,7 @@ export function Button({
 }: ButtonHTMLAttributes<HTMLButtonElement> & { variant?: 'primary' | 'ghost' | 'danger' }) {
   const variants = {
     primary: 'bg-accent hover:bg-accent-soft text-white',
-    ghost: 'bg-surface-overlay hover:bg-line text-slate-200',
+    ghost: 'bg-surface-overlay hover:bg-line text-ink',
     danger: 'bg-red-600/80 hover:bg-red-600 text-white',
   }
   return (
@@ -37,7 +37,7 @@ export function Input({ className, ...props }: InputHTMLAttributes<HTMLInputElem
     <input
       className={cn(
         'bg-surface-overlay border border-line rounded-lg px-3 py-2 text-sm w-full',
-        'focus:outline-none focus:ring-1 focus:ring-accent placeholder:text-slate-500',
+        'focus:outline-none focus:ring-1 focus:ring-accent placeholder:text-ink-faint',
         className,
       )}
       {...props}
@@ -64,11 +64,11 @@ export function Badge({
   ...props
 }: HTMLAttributes<HTMLSpanElement> & { tone?: 'default' | 'green' | 'yellow' | 'red' | 'accent' }) {
   const tones = {
-    default: 'bg-surface-overlay text-slate-300',
-    green: 'bg-emerald-500/15 text-emerald-400',
-    yellow: 'bg-amber-500/15 text-amber-400',
-    red: 'bg-red-500/15 text-red-400',
-    accent: 'bg-accent/15 text-accent-soft',
+    default: 'bg-surface-overlay text-ink',
+    green: 'bg-emerald-600/10 text-emerald-700',
+    yellow: 'bg-amber-600/10 text-amber-700',
+    red: 'bg-red-600/10 text-red-600',
+    accent: 'bg-accent/10 text-accent-soft',
   }
   return (
     <span
@@ -95,9 +95,9 @@ export function Slider({
 }) {
   return (
     <label className="block">
-      <div className="flex justify-between text-xs text-slate-400 mb-1">
+      <div className="flex justify-between text-xs text-ink-soft mb-1">
         <span>{label}</span>
-        <span className="text-slate-200 font-mono">{value}</span>
+        <span className="text-ink font-mono">{value}</span>
       </div>
       <input
         type="range"
@@ -106,7 +106,7 @@ export function Slider({
         step={step}
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="w-full accent-indigo-500"
+        className="w-full accent-[#B3603F]"
       />
     </label>
   )
@@ -116,20 +116,22 @@ export function Tabs({
   options,
   value,
   onChange,
+  className,
 }: {
   options: { value: string; label: string }[]
   value: string
   onChange: (v: string) => void
+  className?: string
 }) {
   return (
-    <div className="inline-flex bg-surface-overlay rounded-lg p-1 gap-1">
+    <div className={cn('bg-surface-overlay rounded-lg p-1 gap-1', className ?? 'inline-flex')}>
       {options.map((opt) => (
         <button
           key={opt.value}
           onClick={() => onChange(opt.value)}
           className={cn(
             'px-3 py-1.5 rounded-md text-sm transition-colors',
-            value === opt.value ? 'bg-accent text-white' : 'text-slate-400 hover:text-slate-200',
+            value === opt.value ? 'bg-accent text-white' : 'text-ink-soft hover:text-ink',
           )}
         >
           {opt.label}
@@ -143,7 +145,7 @@ export function Spinner({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        'animate-spin h-4 w-4 border-2 border-slate-500 border-t-slate-100 rounded-full inline-block',
+        'animate-spin h-4 w-4 border-2 border-stone-300 border-t-stone-600 rounded-full inline-block',
         className,
       )}
     />
@@ -157,6 +159,6 @@ export function StatusBadge({ status }: { status: string }) {
 
 export function ErrorNote({ message }: { message: string }) {
   return (
-    <div className="bg-red-500/10 border border-red-500/30 text-red-300 text-sm rounded-lg px-3 py-2">{message}</div>
+    <div className="bg-red-600/10 border border-red-300 text-red-700 text-sm rounded-lg px-3 py-2">{message}</div>
   )
 }

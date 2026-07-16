@@ -102,14 +102,14 @@ export function PipelineBuilder() {
         <Card className="space-y-4">
           <Input placeholder="Pipeline name" value={name} onChange={(e) => setName(e.target.value)} />
           <div>
-            <label className="text-xs text-slate-400 block mb-1">1 · Documents to index</label>
+            <label className="text-xs text-ink-soft block mb-1">1 · Documents to index</label>
             <div className="space-y-1 max-h-40 overflow-y-auto">
               {documents.map((d) => (
                 <label
                   key={d.id}
                   className={cn(
                     'flex items-center gap-2 text-sm px-3 py-2 rounded-lg cursor-pointer',
-                    selectedDocs.includes(d.id) ? 'bg-accent/15' : 'bg-surface-overlay hover:bg-line',
+                    selectedDocs.includes(d.id) ? 'bg-accent/10' : 'bg-surface-overlay hover:bg-line',
                   )}
                 >
                   <input
@@ -124,11 +124,11 @@ export function PipelineBuilder() {
                   {d.name}
                 </label>
               ))}
-              {documents.length === 0 && <p className="text-xs text-slate-500">Upload documents first.</p>}
+              {documents.length === 0 && <p className="text-xs text-ink-faint">Upload documents first.</p>}
             </div>
           </div>
           <div>
-            <label className="text-xs text-slate-400 block mb-1">2 · Chunking</label>
+            <label className="text-xs text-ink-soft block mb-1">2 · Chunking</label>
             <Tabs
               options={[
                 { value: 'fixed_size', label: 'Fixed' },
@@ -138,6 +138,7 @@ export function PipelineBuilder() {
               ]}
               value={strategy}
               onChange={setStrategy}
+              className="grid grid-cols-2 sm:grid-cols-4 w-full"
             />
             <div className="mt-3 space-y-3">
               {(strategy === 'fixed_size' || strategy === 'recursive') && (
@@ -153,7 +154,7 @@ export function PipelineBuilder() {
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="text-xs text-slate-400 block mb-1">3 · Embedding model</label>
+              <label className="text-xs text-ink-soft block mb-1">3 · Embedding model</label>
               <Select value={model} onChange={(e) => setModel(e.target.value)}>
                 <option value="all-MiniLM-L6-v2">all-MiniLM-L6-v2 (fast)</option>
                 <option value="all-mpnet-base-v2">all-mpnet-base-v2 (better)</option>
@@ -161,14 +162,14 @@ export function PipelineBuilder() {
               </Select>
             </div>
             <div>
-              <label className="text-xs text-slate-400 block mb-1">4 · Vector store</label>
+              <label className="text-xs text-ink-soft block mb-1">4 · Vector store</label>
               <Select value={vectorstore} onChange={(e) => setVectorstore(e.target.value)}>
                 <option value="chroma">ChromaDB</option>
                 <option value="faiss">FAISS</option>
               </Select>
             </div>
             <div>
-              <label className="text-xs text-slate-400 block mb-1">5 · Retriever</label>
+              <label className="text-xs text-ink-soft block mb-1">5 · Retriever</label>
               <Select value={retriever} onChange={(e) => setRetriever(e.target.value)}>
                 <option value="similarity">Cosine similarity</option>
                 <option value="mmr">MMR (diverse)</option>
@@ -194,30 +195,30 @@ export function PipelineBuilder() {
           </Button>
         </Card>
         <div className="space-y-3">
-          <h2 className="text-sm font-medium text-slate-400">Saved pipelines</h2>
+          <h2 className="text-sm font-medium text-ink-soft">Saved pipelines</h2>
           {pipelines.map((p) => (
             <Card key={p.id} className="flex items-center gap-3">
               <div className="flex-1 min-w-0">
                 <div className="font-medium truncate">{p.name}</div>
-                <div className="text-xs text-slate-500">
+                <div className="text-xs text-ink-faint">
                   {p.config.chunker.strategy} · {p.config.embedder.model} · {p.config.vectorstore} ·{' '}
                   {p.config.retriever.type} k={p.config.retriever.k}
                   {p.config.reranker?.enabled && ' · rerank'}
                   {p.chunk_count > 0 && ` · ${p.chunk_count} chunks`}
                 </div>
-                {p.status === 'failed' && <div className="text-xs text-red-400 mt-1">{p.status_detail}</div>}
+                {p.status === 'failed' && <div className="text-xs text-red-600 mt-1">{p.status_detail}</div>}
               </div>
               <StatusBadge status={p.status} />
               <button
                 title="Python snippet"
-                className="text-slate-500 hover:text-accent-soft"
+                className="text-ink-faint hover:text-accent-soft"
                 onClick={() => setSnippet(pythonSnippet(p))}
               >
                 <Code2 size={16} />
               </button>
               <button
                 title="Delete"
-                className="text-slate-500 hover:text-red-400"
+                className="text-ink-faint hover:text-red-600"
                 onClick={async () => {
                   await api.deletePipeline(p.id)
                   await loadPipelines()
@@ -227,7 +228,7 @@ export function PipelineBuilder() {
               </button>
             </Card>
           ))}
-          {pipelines.length === 0 && <p className="text-sm text-slate-500">No pipelines yet.</p>}
+          {pipelines.length === 0 && <p className="text-sm text-ink-faint">No pipelines yet.</p>}
         </div>
       </div>
       {snippet && (
@@ -239,7 +240,7 @@ export function PipelineBuilder() {
                 Close
               </Button>
             </div>
-            <pre className="text-xs bg-surface rounded-lg p-4 overflow-x-auto whitespace-pre">{snippet}</pre>
+            <pre className="text-xs bg-surface-overlay rounded-lg p-4 overflow-x-auto whitespace-pre">{snippet}</pre>
           </Card>
         </div>
       )}

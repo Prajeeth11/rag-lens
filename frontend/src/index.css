@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-surface text-slate-200 antialiased;
+  @apply bg-surface text-ink antialiased;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
 

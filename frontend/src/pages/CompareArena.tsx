@@ -47,7 +47,7 @@ export function CompareArena() {
             </option>
           ))}
         </Select>
-        <span className="text-slate-500 text-sm">vs</span>
+        <span className="text-ink-faint text-sm">vs</span>
         <Select className="w-56" value={idB} onChange={(e) => setIdB(e.target.value)}>
           {ready.map((p) => (
             <option key={p.id} value={p.id}>
@@ -66,8 +66,8 @@ export function CompareArena() {
           {loading ? <Spinner /> : 'Run both'}
         </Button>
       </Card>
-      {idA === idB && idA && <p className="text-xs text-amber-400">Pick two different pipelines.</p>}
-      {ready.length < 2 && <p className="text-sm text-slate-500">You need at least two ready pipelines to compare.</p>}
+      {idA === idB && idA && <p className="text-xs text-amber-700">Pick two different pipelines.</p>}
+      {ready.length < 2 && <p className="text-sm text-ink-faint">You need at least two ready pipelines to compare.</p>}
       {error && <ErrorNote message={error} />}
       {data && (
         <div className="grid lg:grid-cols-2 gap-4 items-start">

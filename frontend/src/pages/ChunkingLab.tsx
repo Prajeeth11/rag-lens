@@ -58,7 +58,7 @@ export function ChunkingLab() {
       <div className="grid lg:grid-cols-[320px_1fr] gap-4 items-start">
         <Card className="space-y-4">
           <div>
-            <label className="text-xs text-slate-400 block mb-1">Document</label>
+            <label className="text-xs text-ink-soft block mb-1">Document</label>
             <Select value={docId} onChange={(e) => setDocId(e.target.value)}>
               {documents.map((d) => (
                 <option key={d.id} value={d.id}>
@@ -67,7 +67,7 @@ export function ChunkingLab() {
               ))}
             </Select>
           </div>
-          <Tabs options={STRATEGIES} value={strategy} onChange={setStrategy} />
+          <Tabs options={STRATEGIES} value={strategy} onChange={setStrategy} className="grid grid-cols-2 w-full" />
           {(strategy === 'fixed_size' || strategy === 'recursive') && (
             <>
               <Slider label="Chunk size (chars)" value={chunkSize} min={100} max={2000} step={50} onChange={setChunkSize} />
@@ -84,7 +84,7 @@ export function ChunkingLab() {
             {loading ? <Spinner /> : 'Chunk it'}
           </Button>
           {strategy === 'semantic' && (
-            <p className="text-xs text-slate-500">Semantic chunking embeds every sentence — slower on large docs.</p>
+            <p className="text-xs text-ink-faint">Semantic chunking embeds every sentence — slower on large docs.</p>
           )}
         </Card>
         <div className="space-y-4">
@@ -99,33 +99,33 @@ export function ChunkingLab() {
                   ['Max', preview.stats.max_tokens],
                 ].map(([label, value]) => (
                   <Card key={label} className="text-center py-3">
-                    <div className="text-xs text-slate-500">{label}</div>
+                    <div className="text-xs text-ink-faint">{label}</div>
                     <div className="text-xl font-mono">{value}</div>
                   </Card>
                 ))}
               </div>
               <Card>
-                <h3 className="text-sm font-medium text-slate-400 mb-2">Chunk map — click a tile to inspect</h3>
+                <h3 className="text-sm font-medium text-ink-soft mb-2">Chunk map — click a tile to inspect</h3>
                 <ChunkGrid chunks={preview.chunks} />
               </Card>
               <Card>
-                <h3 className="text-sm font-medium text-slate-400 mb-2">Token size distribution</h3>
+                <h3 className="text-sm font-medium text-ink-soft mb-2">Token size distribution</h3>
                 <ResponsiveContainer width="100%" height={180}>
                   <BarChart data={preview.stats.histogram}>
-                    <XAxis dataKey="range" tick={{ fill: '#64748b', fontSize: 10 }} />
-                    <YAxis allowDecimals={false} tick={{ fill: '#64748b', fontSize: 10 }} />
+                    <XAxis dataKey="range" tick={{ fill: '#857463', fontSize: 10 }} />
+                    <YAxis allowDecimals={false} tick={{ fill: '#857463', fontSize: 10 }} />
                     <Tooltip
-                      contentStyle={{ background: '#1e2430', border: '1px solid #2a3140', borderRadius: 8 }}
-                      labelStyle={{ color: '#e2e8f0' }}
+                      contentStyle={{ background: '#ffffff', border: '1px solid #e4d6c3', borderRadius: 8 }}
+                      labelStyle={{ color: '#3d3327' }}
                     />
-                    <Bar dataKey="count" fill="#6366f1" radius={[4, 4, 0, 0]} />
+                    <Bar dataKey="count" fill="#C05A2E" radius={[4, 4, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
               </Card>
             </>
           )}
           {!preview && !error && (
-            <p className="text-sm text-slate-500 py-12 text-center">
+            <p className="text-sm text-ink-faint py-12 text-center">
               Pick a document and strategy, then hit “Chunk it”.
             </p>
           )}

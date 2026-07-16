@@ -11,7 +11,7 @@ export function ChunkCard({ chunk }: { chunk: Chunk }) {
           chars {chunk.start_char}–{chunk.end_char}
         </Badge>
       </div>
-      <p className="text-sm text-slate-300 whitespace-pre-wrap leading-relaxed">{chunk.text}</p>
+      <p className="text-sm text-ink whitespace-pre-wrap leading-relaxed">{chunk.text}</p>
     </Card>
   )
 }

@@ -12,15 +12,15 @@ const STEP_LABELS: Record<string, string> = {
 export function PipelineStepStream({ steps, running }: { steps: StepEvent[]; running: boolean }) {
   return (
     <Card>
-      <h3 className="text-sm font-medium text-slate-400 mb-3">Pipeline steps</h3>
+      <h3 className="text-sm font-medium text-ink-soft mb-3">Pipeline steps</h3>
       <ol className="space-y-2">
         {steps.map((step, i) => (
           <li key={i} className="flex items-center gap-3 text-sm">
-            <CheckCircle2 size={16} className="text-emerald-400 shrink-0" />
+            <CheckCircle2 size={16} className="text-emerald-700 shrink-0" />
             <span className="w-28">{STEP_LABELS[step.step] ?? step.step}</span>
-            <span className="font-mono text-slate-400">{step.latency_ms.toFixed(1)} ms</span>
+            <span className="font-mono text-ink-soft">{step.latency_ms.toFixed(1)} ms</span>
             {step.detail && (
-              <span className="text-xs text-slate-500 truncate">
+              <span className="text-xs text-ink-faint truncate">
                 {Object.entries(step.detail)
                   .map(([k, v]) => `${k}: ${v}`)
                   .join(' · ')}
@@ -29,11 +29,11 @@ export function PipelineStepStream({ steps, running }: { steps: StepEvent[]; run
           </li>
         ))}
         {running && (
-          <li className="flex items-center gap-3 text-sm text-slate-400">
+          <li className="flex items-center gap-3 text-sm text-ink-soft">
             <Spinner /> running…
           </li>
         )}
-        {!running && steps.length === 0 && <li className="text-sm text-slate-500">Run a query to see steps.</li>}
+        {!running && steps.length === 0 && <li className="text-sm text-ink-faint">Run a query to see steps.</li>}
       </ol>
     </Card>
   )

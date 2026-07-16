@@ -33,7 +33,7 @@ export function History() {
             </option>
           ))}
         </Select>
-        <span className="text-sm text-slate-500">{experiments.length} past queries</span>
+        <span className="text-sm text-ink-faint">{experiments.length} past queries</span>
       </Card>
       <div className="space-y-2">
         {experiments.map((exp) => (
@@ -45,7 +45,7 @@ export function History() {
               <span className="flex-1 text-sm truncate">{exp.query}</span>
               <Badge>{exp.latency_ms.toFixed(0)} ms</Badge>
               <Badge>{exp.result.chunks.length} chunks</Badge>
-              <span className="text-xs text-slate-500 whitespace-nowrap">
+              <span className="text-xs text-ink-faint whitespace-nowrap">
                 {new Date(exp.created_at).toLocaleString()}
               </span>
             </button>
@@ -60,7 +60,7 @@ export function History() {
           </Card>
         ))}
         {experiments.length === 0 && (
-          <p className="text-sm text-slate-500 text-center py-8">No queries recorded for this pipeline yet.</p>
+          <p className="text-sm text-ink-faint text-center py-8">No queries recorded for this pipeline yet.</p>
         )}
       </div>
     </div>

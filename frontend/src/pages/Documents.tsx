@@ -58,8 +58,8 @@ export function Documents() {
         )}
       >
         <input {...getInputProps()} />
-        <UploadCloud className="mx-auto mb-2 text-slate-500" />
-        <p className="text-sm text-slate-400">
+        <UploadCloud className="mx-auto mb-2 text-ink-faint" />
+        <p className="text-sm text-ink-soft">
           {uploading ? <Spinner /> : isDragActive ? 'Drop files here' : 'Drag & drop PDF, DOCX, TXT or MD — or click to browse'}
         </p>
       </div>
@@ -69,7 +69,7 @@ export function Documents() {
             <FileText className="text-accent-soft shrink-0" />
             <div className="flex-1 min-w-0">
               <div className="font-medium truncate">{doc.name}</div>
-              <div className="text-xs text-slate-500">
+              <div className="text-xs text-ink-faint">
                 {new Date(doc.created_at).toLocaleString()} · {doc.num_pages} page{doc.num_pages !== 1 && 's'} ·{' '}
                 {doc.char_count.toLocaleString()} chars
               </div>
@@ -81,7 +81,7 @@ export function Documents() {
                 await api.deleteDocument(doc.id)
                 await loadDocuments()
               }}
-              className="text-slate-500 hover:text-red-400 transition-colors"
+              className="text-ink-faint hover:text-red-600 transition-colors"
               title="Delete"
             >
               <Trash2 size={16} />
@@ -89,7 +89,7 @@ export function Documents() {
           </Card>
         ))}
         {documents.length === 0 && !uploading && (
-          <p className="text-sm text-slate-500 text-center py-8">No documents yet — upload one to get started.</p>
+          <p className="text-sm text-ink-faint text-center py-8">No documents yet — upload one to get started.</p>
         )}
       </div>
     </div>

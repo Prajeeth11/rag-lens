@@ -4,7 +4,7 @@ import type { EmbeddingsResponse } from '../api/client'
 
 const Plot = createPlotlyComponent(Plotly)
 
-const PALETTE = ['#6366f1', '#14b8a6', '#f59e0b', '#ec4899', '#22c55e', '#38bdf8', '#f97316', '#a855f7']
+const PALETTE = ['#C05A2E', '#199E70', '#C98500', '#2A78D6', '#C2588F', '#7A5FB5', '#4E8397', '#8A7A2E']
 
 export function EmbeddingPlot({ data }: { data: EmbeddingsResponse }) {
   const byDoc = new Map<string, typeof data.points>()
@@ -34,7 +34,7 @@ export function EmbeddingPlot({ data }: { data: EmbeddingsResponse }) {
       mode: 'markers',
       type: 'scattergl',
       name: 'query',
-      marker: { size: 16, color: '#ef4444', symbol: 'star' },
+      marker: { size: 16, color: '#dc2626', symbol: 'star' },
     })
   }
 
@@ -46,11 +46,11 @@ export function EmbeddingPlot({ data }: { data: EmbeddingsResponse }) {
         height: 520,
         paper_bgcolor: 'transparent',
         plot_bgcolor: 'transparent',
-        font: { color: '#94a3b8', size: 11 },
+        font: { color: '#6c5d4c', size: 11 },
         legend: { orientation: 'h', y: -0.12 },
         margin: { l: 40, r: 20, t: 20, b: 40 },
-        xaxis: { gridcolor: '#2a3140', zerolinecolor: '#2a3140' },
-        yaxis: { gridcolor: '#2a3140', zerolinecolor: '#2a3140' },
+        xaxis: { gridcolor: '#e4d6c3', zerolinecolor: '#e4d6c3' },
+        yaxis: { gridcolor: '#e4d6c3', zerolinecolor: '#e4d6c3' },
       }}
       config={{ displaylogo: false }}
       style={{ width: '100%' }}
