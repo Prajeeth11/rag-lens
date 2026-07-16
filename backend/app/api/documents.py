@@ -1,4 +1,5 @@
 import shutil
+import uuid
 from pathlib import Path
 
 from fastapi import APIRouter, Depends, HTTPException, UploadFile
@@ -31,7 +32,8 @@ async def upload_document(file: UploadFile, db: Session = Depends(get_db)):
     if suffix not in ALLOWED:
         raise HTTPException(400, f"Unsupported file type {suffix!r}; allowed: {sorted(ALLOWED)}")
 
-    doc = Document(name=file.filename, path="", file_type=suffix.lstrip("."), size_bytes=0)
+    # The id must exist before flush: the stored filename is derived from it.
+    doc = Document(id=uuid.uuid4().hex, name=file.filename, path="", file_type=suffix.lstrip("."), size_bytes=0)
     dest = UPLOAD_DIR / f"{doc.id}{suffix}"
     with dest.open("wb") as out:
         shutil.copyfileobj(file.file, out)
