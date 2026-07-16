@@ -17,6 +17,8 @@ RAG is everywhere, but debugging it is a black box: why did the retriever pull *
 | **Eval Suite** | Upload a Q&A test set, score with RAGAS (faithfulness, answer relevancy, context precision / recall), radar chart + CSV export |
 | **History** | Every past query with its full result trace |
 
+📖 **New here? The [User Guide](docs/USER_GUIDE.md) explains every feature in detail** — each page's controls, how to read every score and badge, the API reference, and troubleshooting.
+
 ## Architecture
 
 ```
