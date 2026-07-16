@@ -151,7 +151,7 @@ Slow first query? That's model loading — see [Troubleshooting](#troubleshootin
 | Badge | Meaning |
 |---|---|
 | `rank N` | Final position in the results |
-| `score …` | The score assigned by the *last* scoring stage — cosine similarity, RRF fusion score, or cross-encoder logit (see [Concepts](#concepts--score-interpretation)); color-coded green/amber/red by strength |
+| `score …` / `rrf …` / `rerank …` | The score from the *last* scoring stage, labeled by type: `score` = cosine similarity (green ≥ 0.6, amber ≥ 0.3, red below), `rerank` = cross-encoder logit (green ≥ 2, amber −2 to 2, red below), `rrf` = fusion score shown in a neutral color because only its relative order is meaningful (see [Concepts](#concepts--score-interpretation)) |
 | `reranked 4 → 1` | The reranker moved this chunk from retrieval rank 4 to final rank 1 (green = promoted, red = demoted). This is the fastest way to see whether reranking is earning its latency |
 | `bm25 #2` / `semantic #5` | Hybrid retrieval only: the chunk's rank in the keyword list and the vector list before fusion. A chunk with `bm25 #1` but `semantic #14` was found by exact keywords, not meaning |
 | footer | Source document, page, exact character range, token count |
